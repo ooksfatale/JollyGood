@@ -49,7 +49,7 @@
                                     <tr>
                                         <td>${list.bbsId}</td>
                                         <td class="title">
-                                            <a href="/board/${list.bbsCd}/write">${list.bbsTitle}</a>
+                                            <a href="/board/${list.bbsCd}/${list.bbsId}">${list.bbsTitle}</a>
                                         </td>
                                         <td>${list.bbsWriterId}</td>
                                         <td><fmt:formatDate value="${list.bbsRegDate}"/></td>

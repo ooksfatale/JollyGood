@@ -17,7 +17,7 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">게시글 등록</h1>
+                <h1 class="page-header">${boardDto.bbsCd}</h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -27,32 +27,23 @@
                 <div class="panel panel-default">
 
                     <div class="panel-heading">
-                        DataTables Advanced Tables
+                        ${boardDto.bbsWriterId}
                     </div>
-                    <form id="frm" action="/board/write" method="post">
-                        <div class="panel-body">
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <select name="bbsCd" class="form-control" >
-                                        <option>FREE</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-sm-12">
-                                <div class="form-group input-group">
-                                    <span class="input-group-addon">제목</span>
-                                    <input type="text" class="form-control" name="bbsTitle" value="${boardDto.bbsTitle}" placeholder="제목을 입력해 주세요.">
-                                </div>
-                            </div>
-                            <div class="col-sm-12">
-                                <div class="form-group input-group">
-                                    <span class="input-group-addon">내용</span>
-                                    <textarea id="summernote" class="form-control" name="bbsContent">${boardDto.bbsContent}</textarea>
-                                </div>
-                            </div>
+
+                    <div class="panel-body">
+                        <div class="col-sm-12">
+                            <h3 class="panel-title">${boardDto.bbsTitle}</h3>
                         </div>
-                    </form>
+                        <hr>
+                        <div class="col-sm-12">
+                            <article>
+                                <p>${boardDto.bbsContent}</p>
+                            </article>
+                        </div>
+                    </div>
+
                     <div class="panel-footer">
+                        <a href="/board/edit/${boardDto.bbsCd}/${boardDto.bbsId}" class="btn btn-default">수정</a>
                         <a href="#none" class="btn btn-default" onclick="fnSave()">저장</a>
                     </div>
                 </div>

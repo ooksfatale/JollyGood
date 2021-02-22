@@ -14,4 +14,7 @@ public interface BoardMapper {
     /*게시글 저장*/
     public void saveBoard(BoardDto boardDto) throws Exception;
 
+    /*게시글 저장*/
+    public BoardDto boardInfo(BoardDto boardDto) throws Exception;
+
 }

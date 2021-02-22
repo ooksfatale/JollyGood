@@ -27,7 +27,7 @@
                 <div class="panel panel-default">
 
                     <div class="panel-heading">
-                        DataTables Advanced Tables
+                        ${boardDto.bbsWriterId}
                     </div>
                     <form id="frm" action="/board/write" method="post">
                         <div class="panel-body">

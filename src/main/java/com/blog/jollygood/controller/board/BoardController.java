@@ -37,7 +37,7 @@ public class BoardController {
     @GetMapping("/board/{bbsCd}/write")
     public String writeBoard(@ModelAttribute BoardDto boardDto, ModelMap model, HttpServletRequest req, HttpServletResponse res, HttpSession session) {
         try {
-            model.addAttribute("boardDto",boardDto);
+            model.addAttribute("boardDto",boardService.boardInfo(boardDto));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -57,17 +57,26 @@ public class BoardController {
         return "redirect:/board/"+boardDto.getBbsCd();
     }
 
-    /* 게시글 저장*/
-    @PostMapping("/board/{bbsCd}/{bbsId}")
-    public String boardDetail(@ModelAttribute BoardDto boardDto, ModelMap model, HttpServletRequest req, HttpServletResponse res, HttpSession session) {
+    /* 게시글 보기*/
+    @GetMapping("/board/{bbsCd}/{bbsId}")
+    public String detailBoard(@ModelAttribute BoardDto boardDto, ModelMap model, HttpServletRequest req, HttpServletResponse res, HttpSession session) {
         try {
-            boardDto.setBbsWriterId("test");
-            boardDto.setBbsWriterSno("test");
-            boardService.saveBoard(boardDto);
+            model.addAttribute("boardDto",boardService.boardInfo(boardDto));
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "redirect:/board/"+boardDto.getBbsCd();
+        return "board/board_detail";
+    }
+
+    /* 게시글 수정*/
+    @GetMapping("/board/edit/{bbsCd}/{bbsId}")
+    public String editBoard(@ModelAttribute BoardDto boardDto, ModelMap model, HttpServletRequest req, HttpServletResponse res, HttpSession session) {
+        try {
+            model.addAttribute("boardDto",boardService.boardInfo(boardDto));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "board/board_write_form";
     }
 
 }

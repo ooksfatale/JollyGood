@@ -21,6 +21,7 @@
 		ORDER BY BBS_REG_DATE DESC
 	</select>
 
+	<!--게시글 저장-->
 	<insert id="saveBoard" parameterType="BoardDto" >
 		<selectKey resultType="int" keyProperty="bbsId" order="BEFORE">
 			SELECT IFNULL(MAX(BBS_ID), 0)+1 FROM jolly.TB_BBS_INFO WHERE BBS_CD=#{bbsCd}
@@ -46,5 +47,26 @@
 			NOW()
 		)
 	</insert>
+
+	<!--게시글 보기-->
+	<select id="boardInfo" parameterType="BoardDto" resultType="BoardDto" >
+		SELECT
+			BBS_ID,
+			BBS_CD,
+			BBS_WRITER_SNO,
+			BBS_WRITER_ID,
+			BBS_TITLE,
+			BBS_CONTENT,
+			BBS_REG_DATE,
+			BBS_UPD_DATE,
+			BBS_VIEW_CNT,
+			BBS_USE_YN
+		FROM JOLLY.TB_BBS_INFO
+		WHERE BBS_USE_YN = 'Y'
+		AND BBS_ID = #{bbsId}
+		AND BBS_CD = #{bbsCd}
+	</select>
+
+
 
 </mapper>

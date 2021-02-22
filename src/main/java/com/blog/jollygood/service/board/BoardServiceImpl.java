@@ -26,4 +26,10 @@ public class BoardServiceImpl implements BoardService {
         boardMapper.saveBoard(boardDto);
     }
 
+    /*게시글 저장*/
+    @Override
+    public BoardDto boardInfo(BoardDto boardDto) throws Exception {
+        return boardMapper.boardInfo(boardDto);
+    }
+
 }
