@@ -43,8 +43,8 @@
                     </div>
 
                     <div class="panel-footer">
-                        <a href="/board/edit/${boardDto.bbsCd}/${boardDto.bbsId}" class="btn btn-default">수정</a>
-                        <a href="#none" class="btn btn-default" onclick="fnSave()">저장</a>
+                        <a href="/board/${boardDto.bbsCd}/${boardDto.bbsId}/edit" class="btn btn-default">수정</a>
+                        <a href="#none" class="btn btn-default" onclick="fnSave()">삭제</a>
                     </div>
                 </div>
             </div>

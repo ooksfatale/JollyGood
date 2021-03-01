@@ -24,7 +24,6 @@ public class BoardController {
     @GetMapping("/board/{bbsCd}")
     public String boardList(@ModelAttribute BoardDto boardDto, ModelMap model) throws Exception{
         try {
-            log.debug("boardDto : " + boardDto.getBbsCd());
             List<BoardDto> boardList = boardService.boardList(boardDto);
             model.addAttribute("boardList", boardList);
         }catch (Exception e){
@@ -37,11 +36,12 @@ public class BoardController {
     @GetMapping("/board/{bbsCd}/write")
     public String writeBoard(@ModelAttribute BoardDto boardDto, ModelMap model, HttpServletRequest req, HttpServletResponse res, HttpSession session) {
         try {
-            model.addAttribute("boardDto",boardService.boardInfo(boardDto));
+            boardDto.setBbsWriterId("test");
+            model.addAttribute("boardDto", boardDto);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "board/board_write_form";
+        return "board/board_write";
     }
 
     /* 게시글 저장*/
@@ -68,15 +68,26 @@ public class BoardController {
         return "board/board_detail";
     }
 
-    /* 게시글 수정*/
-    @GetMapping("/board/edit/{bbsCd}/{bbsId}")
+    /* 게시글 수정화면*/
+    @GetMapping("/board/{bbsCd}/{bbsId}/edit")
     public String editBoard(@ModelAttribute BoardDto boardDto, ModelMap model, HttpServletRequest req, HttpServletResponse res, HttpSession session) {
         try {
             model.addAttribute("boardDto",boardService.boardInfo(boardDto));
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "board/board_write_form";
+        return "board/board_edit";
+    }
+
+    /* 게시글 수정*/
+    @PutMapping("/board/{bbsCd}/{bbsId}")
+    public String updateBoard(@ModelAttribute BoardDto boardDto, ModelMap model, HttpServletRequest req, HttpServletResponse res, HttpSession session) {
+        try {
+            boardService.updateBoard(boardDto);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "redirect:/board/"+boardDto.getBbsCd();
     }
 
 }

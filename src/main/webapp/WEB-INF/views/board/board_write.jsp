@@ -23,7 +23,7 @@
         </div>
         <!-- /.row -->
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-7">
                 <div class="panel panel-default">
 
                     <div class="panel-heading">
@@ -31,29 +31,32 @@
                     </div>
                     <form id="frm" action="/board/write" method="post">
                         <div class="panel-body">
-                            <div class="col-sm-3">
-                                <div class="form-group">
+                            <div class="col-sm-6">
+                                <div class="form-group input-group">
+                                    <span class="input-group-addon">분류</span>
                                     <select name="bbsCd" class="form-control" >
-                                        <option>FREE</option>
+                                        <option>게시판 선택</option>
+                                        <option>free</option>
+                                        <option>news</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-sm-12">
                                 <div class="form-group input-group">
                                     <span class="input-group-addon">제목</span>
-                                    <input type="text" class="form-control" name="bbsTitle" value="${boardDto.bbsTitle}" placeholder="제목을 입력해 주세요.">
+                                    <input type="text" class="form-control" name="bbsTitle" value="<c:out value='${boardDto.bbsTitle}'/>" placeholder="제목을 입력해 주세요.">
                                 </div>
                             </div>
                             <div class="col-sm-12">
-                                <div class="form-group input-group">
-                                    <span class="input-group-addon">내용</span>
+                                <div class="form-group">
+                                    <%--<span class="input-group-addon">내용</span>--%>
                                     <textarea id="summernote" class="form-control" name="bbsContent">${boardDto.bbsContent}</textarea>
                                 </div>
                             </div>
                         </div>
                     </form>
                     <div class="panel-footer">
-                        <a href="#none" class="btn btn-default" onclick="fnSave()">저장</a>
+                        <button type="button" class="btn btn-default" onclick="fnSave()">저장</button>
                     </div>
                 </div>
             </div>

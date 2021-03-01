@@ -67,6 +67,14 @@
 		AND BBS_CD = #{bbsCd}
 	</select>
 
-
+	<update id="updateBoard" parameterType="BoardDto">
+		UPDATE jolly.TB_BBS_INFO
+		SET BBS_CD = #{bbsCd},
+			BBS_TITLE = #{bbsTitle},
+			BBS_CONTENT = #{bbsContent},
+			BBS_UPD_DATE = NOW()
+		WHERE BBS_CD = #{bbsCd}
+		AND BBS_ID = #{bbsId}
+	</update>
 
 </mapper>
